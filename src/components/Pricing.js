@@ -3,6 +3,7 @@
 import { motion, useInView } from 'framer-motion'
 import Link from 'next/link'
 import { useRef } from 'react'
+import { livePrograms } from '@/lib/fundingPrograms'
 
 const levelPricing = [
   ['101 Level', '5 sessions / 5 hours', '$199'],
@@ -45,6 +46,15 @@ export default function Pricing() {
           <div className="flex items-center justify-center gap-3 mb-6"><div className="w-8 h-px bg-[var(--gold)]" /><span className="text-[#020b24] text-sm font-bold uppercase tracking-wider">Pricing</span><div className="w-8 h-px bg-[var(--gold)]" /></div>
           <h2 className="text-4xl md:text-5xl font-bold mb-5">A Clear Path to <span className="gradient-text">Steady Progress</span></h2>
           <p className="max-w-3xl mx-auto text-slate-600 text-lg">The first trial session is free. Meet your mentor, discuss the student&apos;s goals, and choose the format that fits best.</p>
+          <p className="max-w-3xl mx-auto mt-4 text-slate-600">
+            Have an education savings account, a scholarship, or charter school funds?{' '}
+            {livePrograms.length > 0
+              ? 'Some programs can pay CoreMinds directly.'
+              : 'CoreMinds cannot accept them yet.'}{' '}
+            <Link href="/funding" className="font-semibold text-[#020b24] underline decoration-[var(--gold)] decoration-2 underline-offset-4 hover:no-underline">
+              {livePrograms.length > 0 ? 'See which ones' : 'See how they work and where we stand'}
+            </Link>
+          </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6 items-start">

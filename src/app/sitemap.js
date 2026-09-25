@@ -1,11 +1,12 @@
 import { subjects, locations } from '@/lib/growthPages'
+import { livePrograms } from '@/lib/fundingPrograms'
 
 const BASE = 'https://coremindstutor.org'
 
 export default function sitemap() {
   const now = new Date()
 
-  const core = ['', '/about', '/founders', '/ishan-shrivastava', '/abhyuday-yachareni', '/programs', '/pricing', '/teachers', '/reviews', '/coresports', '/coresports/basketball', '/coresports/volleyball', '/booking', '/referrals', '/submit-review', '/subjects', '/tutoring']
+  const core = ['', '/about', '/founders', '/ishan-shrivastava', '/abhyuday-yachareni', '/programs', '/pricing', '/teachers', '/reviews', '/coresports', '/coresports/basketball', '/coresports/volleyball', '/booking', '/referrals', '/submit-review', '/subjects', '/tutoring', '/funding']
     .map((path) => ({
       url: `${BASE}${path}`,
       lastModified: now,
@@ -27,5 +28,14 @@ export default function sitemap() {
     priority: 0.7,
   }))
 
-  return [...core, ...subjectPages, ...locationPages]
+  // Only programs CoreMinds is genuinely enrolled and active in — see the
+  // status gate in src/lib/fundingPrograms.js.
+  const fundingPages = livePrograms.map((p) => ({
+    url: `${BASE}/funding/${p.slug}`,
+    lastModified: now,
+    changeFrequency: 'monthly',
+    priority: 0.7,
+  }))
+
+  return [...core, ...subjectPages, ...locationPages, ...fundingPages]
 }

@@ -5,7 +5,7 @@ import { Facebook, Phone, Mail, MessageCircle, ArrowUpRight } from 'lucide-react
 import { Magnetic } from '@/components/Motion'
 import { subjects, locations } from '@/lib/growthPages'
 
-const explore = [['About', '/about'], ['Founders', '/founders'], ['Programs', '/programs'], ['Pricing', '/pricing'], ['Teachers', '/teachers'], ['Subjects', '/subjects'], ['Areas we serve', '/tutoring']]
+const explore = [['About', '/about'], ['Founders', '/founders'], ['Programs', '/programs'], ['Pricing', '/pricing'], ['Paying with education funds', '/funding'], ['Teachers', '/teachers'], ['Subjects', '/subjects'], ['Areas we serve', '/tutoring']]
 const getStarted = [['Book a free session', '/booking'], ['Refer & earn $10', '/referrals'], ['Leave a review', '/submit-review']]
 
 export default function Footer() {

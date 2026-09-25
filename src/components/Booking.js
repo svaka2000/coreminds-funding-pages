@@ -5,6 +5,7 @@ import { useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
 import { Gift } from 'lucide-react'
 import { BOOKING_FORMSPREE_ENDPOINT } from '@/lib/formspree'
+import { fundingOptions } from '@/lib/fundingPrograms'
 
 const inputClass = `w-full bg-white border border-white rounded-none px-4 py-3.5 text-slate-950 placeholder-slate-500
   transition-all duration-200 input-glow focus:bg-white text-sm outline-none`
@@ -20,7 +21,7 @@ export default function Booking() {
   const [submitError, setSubmitError] = useState('')
   const [form, setForm] = useState({
     parentName: '', studentName: '', grade: '', email: '', phone: '',
-    contactMethod: '', programInterest: '', preferredTimes: '', goals: '',
+    contactMethod: '', programInterest: '', funding: '', preferredTimes: '', goals: '',
   })
 
   const handleChange = (e) => {
@@ -50,7 +51,7 @@ export default function Booking() {
       setSubmitted(true)
       setForm({
         parentName: '', studentName: '', grade: '', email: '', phone: '',
-        contactMethod: '', programInterest: '', preferredTimes: '', goals: '',
+        contactMethod: '', programInterest: '', funding: '', preferredTimes: '', goals: '',
       })
     } catch {
       setSubmitError('Something went wrong. Please try again or email us directly.')
@@ -229,6 +230,28 @@ export default function Booking() {
                     <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">▾</div>
                   </div>
                 </div>
+              </div>
+
+              <div>
+                <label className="block text-slate-600 text-xs font-semibold uppercase mb-2">
+                  Education Funding <span className="text-slate-400 normal-case font-normal tracking-normal">(optional)</span>
+                </label>
+                <div className="relative">
+                  <select name="funding" value={form.funding} onChange={handleChange} className={selectClass}>
+                    <option value="">Select if your family has education funds</option>
+                    {fundingOptions.map((f) => (
+                      <option key={f.value} value={f.value}>{f.label}</option>
+                    ))}
+                  </select>
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">▾</div>
+                </div>
+                <p className="mt-2 text-xs leading-relaxed text-slate-500">
+                  If your family has education funds, pick the kind here. We will ask about the details when we reply,
+                  so there is no need to share more in this form.{' '}
+                  <Link href="/funding" className="font-semibold text-[#020b24] underline hover:no-underline">
+                    How this works
+                  </Link>
+                </p>
               </div>
 
               <div>
